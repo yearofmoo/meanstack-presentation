@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+  <head>
+    <style>
+        .repeater.ng-enter-stagger {
+          transition-delay:0.1s;
+        }
+      .repeater.ng-enter {
+        transition:1s linear all;
+        position:relative;
+        left:100px;
+      }
+      .repeater.ng-enter.ng-enter-active {
+        left:0;
+      }
+    </style>
+  </head>
+  <body ng-init="letters=['a','b','c','d','e']">
+    <a href="#/">Home</a>
+    <a href="#/form">New</a>
+    <div ng-view></div>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.min.js"></script>
+    <script>
+      angular.module('app', ['ngRoute','ngAnimate'])
+        .config(function($routeProvider) {
+          $routeProvider.when('/', {
+            controller : 'HomeCtrl',
+            templateUrl : 'home.html'
+          });
+          $routeProvider.when('/form', {
+            controller : 'FormCtrl',
+            templateUrl : 'form.html'
+          });
+        })
+
+        .controller('HomeCtrl', function($scope) {
+          $scope.title = 'index';
+        })
+
+        .controller('FormCtrl', function($scope) {
+          $scope.title = 'form';
+        });
+    </script>
+  </body>
+</html>

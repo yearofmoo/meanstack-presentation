@@ -1,0 +1,60 @@
+{
+  "name": "mean",
+  "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+  "version": "0.1.0",
+  "private": false,
+  "author": "Amos Haviv",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linnovate/mean.git"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "scripts": {
+    "start": "node node_modules/grunt-cli/bin/grunt",
+    "test": "node node_modules/grunt-cli/bin/grunt test",
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "express": "latest",
+    "mongoose": "latest",
+    "connect-mongo": "latest",
+    "connect-flash": "latest",
+    "crypto": "latest",
+    "underscore": "latest",
+    "view-helpers": "latest",
+    "mean-logger": "latest",
+    "forever": "latest",
+    "bower": "latest",
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-env": "latest",
+    "cors": "^2.2.0",
+    "ejs": "^1.0.0"
+  },
+  "devDependencies": {
+    "matchdep": "^0.3.0",
+    "supertest": "latest",
+    "should": "latest",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-jshint": "latest",
+    "grunt-nodemon": "^0.2.1",
+    "grunt-concurrent": "latest",
+    "grunt-mocha-test": "^0.10.0",
+    "protractor": "latest",
+    "grunt-protractor-runner": "~0.1.6",
+    "grunt-shell-spawn": "~0.3.0",
+    "mocha": "^1.18.2",
+    "chai": "~1.8.1",
+    "grunt-open": "^0.2.3",
+    "karma": "^0.12.1",
+    "karma-chrome-launcher": "^0.1.2",
+    "grunt": "^0.4.4",
+    "grunt-karma": "^0.8.2",
+    "karma-script-launcher": "^0.1.0",
+    "karma-jasmine": "^0.1.5",
+    "karma-mocha": "^0.1.3"
+  }
+}

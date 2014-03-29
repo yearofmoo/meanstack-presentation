@@ -1,0 +1,6 @@
+{
+    "db": "mongodb://localhost/meanstack-app-prod",
+    "app": {
+        "name": "MEANStack-demo-repo-prod"
+    }
+}

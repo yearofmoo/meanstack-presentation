@@ -1,0 +1,11 @@
+<form ng-submit="submit()" name="myForm">
+  <p>
+    <label>Title:</label>
+    <input type="text" ng-model="article.title" name="title" class="form-control" required />
+  </p>
+  <p>
+    <label>Content:</label>
+    <textarea ng-model="article.content" name="content" class="form-control" required></textarea>
+  </p>
+  <input type="submit" value="Submit" />
+</form>

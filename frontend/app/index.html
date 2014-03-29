@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html data-ng-app="app">
+  <head>
+    <title>MEANStack Demo App</title>
+    <link rel="stylesheet" type="text/css" href="./assets/app.css" />
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#/">Home</a></li>
+              <li><a href="#/new-article">Articles</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <main id="view-container">
+        <div ng-view></div>
+      </main>
+    </div>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>
