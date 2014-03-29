@@ -70,12 +70,14 @@
 }
 
 html {
-  background: -moz-linear-gradient(top, rgba(108,0,0,1) 0%, rgba(10,10,10,1) 27%, rgba(0,0,0,1) 67%, rgba(34,34,34,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(108,0,0,1)), color-stop(27%,rgba(10,10,10,1)), color-stop(67%,rgba(0,0,0,1)), color-stop(100%,rgba(34,34,34,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, rgba(108,0,0,1) 0%,rgba(10,10,10,1) 27%,rgba(0,0,0,1) 67%,rgba(34,34,34,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, rgba(108,0,0,1) 0%,rgba(10,10,10,1) 27%,rgba(0,0,0,1) 67%,rgba(34,34,34,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, rgba(108,0,0,1) 0%,rgba(10,10,10,1) 27%,rgba(0,0,0,1) 67%,rgba(34,34,34,1) 100%); /* IE10+ */
-  background: linear-gradient(to bottom, rgba(108,0,0,1) 0%,rgba(10,10,10,1) 27%,rgba(0,0,0,1) 67%,rgba(34,34,34,1) 100%); /* W3C */
+  background: #474747; /* Old browsers */
+background: -moz-linear-gradient(top, #474747 0%, #0a0a0a 27%, #000000 67%, #0c121c 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#474747), color-stop(27%,#0a0a0a), color-stop(67%,#000000), color-stop(100%,#0c121c)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #474747 0%,#0a0a0a 27%,#000000 67%,#0c121c 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #474747 0%,#0a0a0a 27%,#000000 67%,#0c121c 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #474747 0%,#0a0a0a 27%,#000000 67%,#0c121c 100%); /* IE10+ */
+background: linear-gradient(to bottom, #474747 0%,#0a0a0a 27%,#000000 67%,#0c121c 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#474747', endColorstr='#0c121c',GradientType=0 ); /* IE6-9 */
 }
 #body {
   background-color:transparent;
@@ -91,7 +93,7 @@ h1,h2,h3 {
 }
 
 .em {
-	color:#6AB825!important;
+  color:#00C0F7!important
 }
 
 .em3 {
@@ -99,11 +101,11 @@ h1,h2,h3 {
 }
 
 .em4 {
-  color:#ED9D13!important
+	color:#6AB825!important;
 }
 
 .em2 {
-  color:#00C0F7!important
+  color:#ED9D13!important
 }
 
 .em5 {

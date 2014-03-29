@@ -1,2 +1,4 @@
-<h5>{{ article.title }}</h5>
-<p>{{ article.content }}</p>
+<div class="article-entry">
+  <h2 class="article-heading">{{ article.title }}</h2>
+  <p ng-bind-html="article.content | html"></p>
+</div>

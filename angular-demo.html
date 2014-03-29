@@ -3,6 +3,40 @@
   <head>
   </head>
   <body>
-    Hello World
+    <a href="#">Home</a>
+    <a href="#/new-page">New Page</a>
+
+    <div ng-view></div>
+
+    <script src="./angular.js"></script>
+    <script src="./angular-animate.js"></script>
+    <script src="./angular-route.js"></script>
+    <script>
+      angular.module('app', ['ngAnimate','ngRoute'])
+        .config(function($routeProvider) {
+          $routeProvider.when('/',{
+            templateUrl : './home.html',
+            controller : 'HomeCtrl'
+          });
+          $routeProvider.when('/new-page',{
+            templateUrl : './page.html',
+            controller : 'NewPageCtrl'
+          });
+        })
+        .factory('appNumbers', function($http) {
+          return function() {
+            return $http.get('./numbers.json');
+          }
+        })
+        .controller('HomeCtrl', function($scope) {
+          $scope.title = 'Home Page';
+        })
+        .controller('NewPageCtrl', function($scope, appNumbers) {
+          appNumbers().success(function(numbers) {
+            $scope.numbers = numbers;
+          });
+          $scope.title = 'New Page';
+        });
+    </script>
   </body>
 </html>

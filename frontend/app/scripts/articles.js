@@ -1,4 +1,4 @@
-angular.module('app.articles', [])
+angular.module('app.articles', ['ngAnimate'])
 
   .constant('TPL_PATH', '/templates')
 
@@ -19,6 +19,21 @@ angular.module('app.articles', [])
     });
   })
 
+  .filter('html', function($sce) {
+    return function(text) {
+      text = text.replace("\n","\n<br />");
+      text = $sce.trustAsHtml(text);
+      return text;
+    };
+  })
+
+  .filter('firstLine', function() {
+    return function(text) {
+      var split = text.split("\n")[0];
+      return split[0] + (split.length > 1 ? ' ...' : '');
+    };
+  })
+
   .controller('HomeCtrl', function($scope, $http, API_PATH) {
     $http.get(API_PATH + '/articles').success(function(articles) {
       $scope.articles = articles;
@@ -36,7 +51,6 @@ angular.module('app.articles', [])
     $scope.article = {};
     $scope.submit = function() {
       if($scope.myForm.$valid) {
-        console.log($scope.data);
         $http.post(API_PATH + '/articles', $scope.article).then(function(article) {
           $location.path('/');
         });

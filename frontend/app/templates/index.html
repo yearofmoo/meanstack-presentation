@@ -1,5 +1,8 @@
-<div ng-repeat="article in articles">
-  <h5>
+<div ng-repeat="article in articles" class="article-listing">
+  <h2 class="article-heading">
     <a href="#/articles/{{ article._id }}">{{ article.title }}</a>
-  </h5>
+  </h2>
+  <p>
+    <span ng-bind-html="article.content | firstLine | html"></span>
+  </p>
 </div>

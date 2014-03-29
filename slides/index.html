@@ -334,6 +334,77 @@ app.controller('AppCtrl', function($scope) {
         </section>
 
         <section>
+          <h2 class="em">ngRepeat</h2>
+
+          <p class="fragment fade-in">
+            ngRepeat renders a list of items from a scope member
+          </p>
+
+          <pre class="big-code fragment fade-in"><code data-trim>
+var app = angular.module('myApp', []);
+app.controller('ColorsCtrl', function($scope) {
+$scope.colors = 'red,green,blue,orange,yellow,purple,gray'.split(',');
+$scope.tooManyColors = function() {
+  return $scope.colors.length >= 5;
+};
+});
+          </code></pre>
+
+          <pre class="big-code fragment fade-in"><code data-trim>
+&lt;div ng-controller="ColorsCtrl"&gt;
+<div ng-if="tooManyColors()">
+  This application has too many colors! 
+</div>
+&lt;div ng-repeat="color in colors"&gt;
+  {{ color }}
+&lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+
+        </section>
+
+        <section>
+          <h2 class="em">ngInclude</h2>
+
+          <p class="fragment fade-in">
+            <span class="em2">ngInclude</span> works to render content like ngView does
+          </p>
+
+          <pre class="big-code fragment fade-in"><code data-trim>
+&lt;div ng-controller="AppCtrl as app"&gt;
+&lt;select ng-model="app.templateValue"&gt;
+  &lt;option value="'frame1.html'"&gt;Frame 1&lt;/option&gt;
+  &lt;option value="'frame2.html'"&gt;Frame 2&lt;/option&gt;
+&lt;/select&gt;
+&lt;div ng-include="app.templateValue"&gt;&lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2 class="em">ngShow / ngHide</h2>
+
+          <p class="fragment fade-in">
+            <span class="em2">ngShow</span> and <span class="em2">ngHide</span> show and hide an element on screen
+          </p>
+
+          <pre class="big-code fragment fade-in"><code data-trim>
+&lt;div ng-controller="AppCtrl as app"&gt;
+&lt;button ng-click="app.showMe=true"&gt;
+  Show
+&lt;/em&gt;
+&lt;button ng-click="app.showMe=false"&gt;
+  Hide
+&lt;/em&gt;
+&lt;div ng-show="app.showMe"&gt;
+  I am visible...
+&lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </section>
+
+
+        <section>
           <h2 class="em">AngularJS 201 (routes and a working interface)</h2>
           <p class="fragment fade-in">
             Let's continue our demo to include routing and a forms page
@@ -454,6 +525,104 @@ $scope.colors = Color.query();
         </section>
 
         <section>
+          <h2 class="em">Animations</h2>
+
+          <p class="fragment fade-in">
+            Supported with the latest release of AngularJS (v1.2-rc2)
+          </p>
+
+          <p class="fragment fade-in">
+            Include the <span class="em2">ngAnimate</span> module as a dependency for your app module.
+          </p>
+
+          <pre class="big-code fragment fade-in"><code style="text-align:center">
+var app = angular.module('myApp', ['ngRoute', 'ngAnimate','ngResource']);
+          </code></pre>
+
+          <p class="fragment fade-in">
+            Animations work with ng-* directives automatically via CSS and/or JavaScript hooks
+          </p>
+        </section>
+
+        <section>
+          <h2 class="em">CSS-enabled Animations</h2>
+          <p class="fragment fade-in">
+            CSS3 Transitions + CSS3 Keyframe Animations are automatically triggered and rendered
+          </p>
+
+          <p class="fragment fade-in">
+            Just include a CSS class on the <span class="em2">ngView</span> element
+          </p> 
+
+          <pre class="big-code fragment fade-in"><code style="text-align:center">
+&lt;div ng-view class="my-view"&gt;&lt;/div&gt;
+          </code></pre>
+
+          <pre class="big-code fragment fade-in"><code data-trim>
+.my-view.ng-enter, .mv-view.ng-leave {
+  transition:1s linear all;
+}
+
+.my-view.ng-leave.ng-leave-active {
+.my-view.ng-enter {
+  opacity:0;
+}
+
+.my-view.ng-enter.ng-enter-active {
+.my-view.ng-leave {
+  opacity:1;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2 class="em">JavaScript-enabled Animations</h2>
+          <p class="fragment fade-in">
+            JavaScript callbacks are available for more advanced animations
+          </p>
+
+          <p class="fragment fade-in">
+            Include a CSS class just as before and map that to a JavaScript animation
+          </p> 
+
+          <pre class="big-code fragment fade-in"><code data-trim>
+app.animation('.my-view', function() {
+  return {
+    enter : function(element, done) {
+      jQuery(element).animate({
+        opacity:1
+      }, done);
+    },
+    leave : function(element, done) {
+      jQuery(element).animate({
+        opacity:0
+      }, done);
+    }
+  };
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2 class="em">AngularJS 301 (working application)</h2>
+          <p class="fragment fade-in">
+            Clone the demo repo
+          </p>
+          <p class="fragment fade-in">
+            Run <span class="em2">mongod</span> to turn <span class="em3">mongo</span> on
+          </p>
+          <p class="fragment fade-in">
+            Make sure to run <span class="em2">npm install</span> under both directories
+          </p>
+          <p class="fragment fade-in">
+            Run <span class="em2">node server.js</span> under <span class="em3">backend/</span>
+          </p>
+          <p class="fragment fade-in">
+            Run <span class="em2">grunt</span> under <span class="em3">frontend/</span>
+          </p>
+        </section>
+
+        <section>
           <h2 class="em">The 90% of your app</h2>
           <p class="fragment fade-in">
             not everything needs to be hooked into Angular
@@ -463,22 +632,6 @@ $scope.colors = Color.query();
           </p>
           <p class="fragment fade-in">
             adjust your Angular routes for this
-          </p>
-        </section>
-
-        <section>
-          <h2 class="em">How to setup your URLs</h2>
-          <p class="fragment fade-in">
-            /api/ for the express API
-          </p>
-          <p class="fragment fade-in">
-            / (index) for the angular app
-          </p>
-          <p class="fragment fade-in">
-            /page for non-angular pages
-          </p>
-          <p class="fragment fade-in">
-            /#/ for an angular route
           </p>
         </section>
 
@@ -579,6 +732,23 @@ $scope.colors = Color.query();
         </section>
 
         <section>
+          <h2 class="em">How to setup your URLs</h2>
+          <p class="fragment fade-in">
+            /api/ for the express API
+          </p>
+          <p class="fragment fade-in">
+            / (index) for the angular app
+          </p>
+          <p class="fragment fade-in">
+            /page for non-angular pages
+          </p>
+          <p class="fragment fade-in">
+            /#/ for an angular route
+          </p>
+        </section>
+
+
+        <section>
           <h2 class="em">What’s good</h2>
           <p class="fragment fade-in">
             Everything is on the same domain
@@ -611,217 +781,22 @@ $scope.colors = Color.query();
         </section>
 
         <section>
-          <h2 class="em">AngularJS 301 (Dynamic Templates)</h2>
+          <h2 class="em">More Reading on Testing</h2>
           <p class="fragment fade-in">
-            AngularJS provides series of predefined HTML components
-          </p>
-
-          <p class="fragment fade-in">
-            These components reduce much of the JavaScript required to make HTML appear dynamic 
-          </p>
-        </section>
-
-        <section>
-          <h2 class="em">ngRepeat</h2>
-
-          <p class="fragment fade-in">
-            ngRepeat renders a list of items from a scope member
-          </p>
-
-          <pre class="big-code fragment fade-in"><code data-trim>
-var app = angular.module('myApp', []);
-app.controller('ColorsCtrl', function($scope) {
-$scope.colors = 'red,green,blue,orange,yellow,purple,gray'.split(',');
-$scope.tooManyColors = function() {
-  return $scope.colors.length >= 5;
-};
-});
-          </code></pre>
-
-          <pre class="big-code fragment fade-in"><code data-trim>
-&lt;div ng-controller="ColorsCtrl"&gt;
-<div ng-if="tooManyColors()">
-  This application has too many colors! 
-</div>
-&lt;div ng-repeat="color in colors"&gt;
-  {{ color }}
-&lt;/div&gt;
-&lt;/div&gt;
-          </code></pre>
-
-        </section>
-
-        <section>
-          <h2 class="em">ngInclude</h2>
-
-          <p class="fragment fade-in">
-            <span class="em2">ngInclude</span> works to render content like ngView does
-          </p>
-
-          <pre class="big-code fragment fade-in"><code data-trim>
-&lt;div ng-controller="AppCtrl as app"&gt;
-&lt;select ng-model="app.templateValue"&gt;
-  &lt;option value="'frame1.html'"&gt;Frame 1&lt;/option&gt;
-  &lt;option value="'frame2.html'"&gt;Frame 2&lt;/option&gt;
-&lt;/select&gt;
-&lt;div ng-include="app.templateValue"&gt;&lt;/div&gt;
-&lt;/div&gt;
-          </code></pre>
-        </section>
-
-        <section>
-          <h2 class="em">ngShow / ngHide</h2>
-
-          <p class="fragment fade-in">
-            <span class="em2">ngShow</span> and <span class="em2">ngHide</span> show and hide an element on screen
-          </p>
-
-          <pre class="big-code fragment fade-in"><code data-trim>
-&lt;div ng-controller="AppCtrl as app"&gt;
-&lt;button ng-click="app.showMe=true"&gt;
-  Show
-&lt;/em&gt;
-&lt;button ng-click="app.showMe=false"&gt;
-  Hide
-&lt;/em&gt;
-&lt;div ng-show="app.showMe"&gt;
-  I am visible...
-&lt;/div&gt;
-&lt;/div&gt;
-          </code></pre>
-        </section>
-
-        <section>
-          <h2 class="em">Dart and AngularDart Materials</h2>
-          <p class="fragment fade-in">
-          AngularDart.org: <br /><a target="_blank" class="em5" href="https://angulardart.org">angulardart.org</a>
+            Testing with Angular: <a target="_blank" href="http://bit.ly/13XX34D" class="em">http://bit.ly/13XX34D</a>
           </p>
           <p class="fragment fade-in">
-          AngularDart tutorial: <br /><a target="_blank" class="em3" href="https://angulardart.org/tutorial/">angulardart.org/tutorial/</a>
-          </p>
-          <p class="fragment fade-in">
-          AngularDart Demos: <br /><a target="_blank" class="em4" href="https://github.com/angular/angular.dart/tree/master/demo">github.com/angular/angular.dart/tree/master/demo</a>
-          </p>
-          <p class="fragment fade-in">
-          Dart on Youtube: <br /><a target="_blank" class="em2" href="https://www.youtube.com/user/DartlangTV">youtube.com/user/DartlangTV</a>
-          </p>
-        </section>
-
-
-        <section>
-          <h2 class="em">ES6</h2>
-          <p class="fragment fade-in">
-            The successor to the JavaScript that we have now
-          </p>
-          <p class="fragment fade-in">
-            Supports Classes and Modules (<span class="em2">finally!</span>)
-          </p>
-          <p class="fragment fade-in">
-            Supports of a variety of new syntax tweaks (<span class="em">FatArrow, Let, Destructing)</span>
+            Advanced Testing: <a target="_blank" href="http://yom.nu/ngtesting-article" class="em">http://yom.nu/ngtesting-article</a>
           </p>
         </section>
 
         <section>
-          <h2 class="em">Classes</h2>
+          <h2 class="em">More Reading on Angular</h2>
           <p class="fragment fade-in">
-            Classes are supported in a <span class="em2">similar</span> way to
-            <span class="em2">AngularDart</span>
-          </p>
-          <div class="cols two-col">
-            <div class="col">
-<pre class="big-code fragment fade-in"><code data-trim>
-class Man {
-  public name;
-  constructor(name) {
-    this.name = name;
-  }
-}
-</code></pre>
-            </div>
-            <div class="col">
-<pre class="big-code fragment fade-in"><code data-trim>
-class Manager extends Man {
-  yell() {
-    //yell at employees
-  }
-}
-</code></pre>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="em">Modules</h2>
-          <p class="fragment fade-in">
-            Proper module support similar to node's <span class="em3">require</span>
-          </p>
-          <div class="cols two-col">
-            <div class="col">
-<pre class="big-code fragment fade-in"><code data-trim>
-module "management" {
-  export class Manager extends Person { }
-  export class Secretary extends Person { }
-  export class Employee extends Person { }
-}
-</code></pre>
-            </div>
-            <div class="col">
-<pre class="big-code fragment fade-in"><code>
-  module management from "/mangement.js";
-  import Manager from "management";
-  new Manager().yell(); //ahhhh
-
-</code></pre>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="em">Yield</h2>
-          <p class="fragment fade-in">
-            Yielding allows for <span class="em">code blocking</span>
-          </p>
-          <div class="cols two-col">
-            <div class="col">
-<pre class="big-code fragment fade-in"><code data-trim>
-class Manager extends Man {
-  yell(name) {
-    while(name != 'stop it') {
-      say("arghhh I hate you: " + name);
-      yield name;
-    }
-  }
-}
-</code></pre>
-            </div>
-            <div class="col">
-<pre class="big-code fragment fade-in"><code data-trim>
-Manager man = new Manager();
-man.yell('fred');
-//...
-man.next('ian');
-//...
-man.next('sammy');
-//...
-man.next('stop it');
-</code></pre>
-            </div>
-          </div>
-        </section>
-        
-        <section>
-          <h2 class="em">Traceur Compiler</h2>
-          <p class="fragment fade-in">
-            Trans <span class="em3">compiles</span> ES6 code <span class="em3">down</span> to ES5, ES4
+            Testing with Angular: <a target="_blank" href="http://egghead.io" class="em">egghead.io</a>
           </p>
           <p class="fragment fade-in">
-            Not <span class="em4">fully complete</span>. Doesn't support everything.
-          </p>
-          <p class="fragment fade-in">
-            Great way to <span class="em2">prototype</span> JS code early on
-          </p>
-          <p class="fragment fade-in">
-            Let's try it out
+            Advanced Testing: <a target="_blank" href="http://ng-newsletter.com" class="em">ng-newsletter</a>
           </p>
         </section>
 
